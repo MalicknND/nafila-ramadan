@@ -17,7 +17,7 @@ const COLORS = {
   secondary: "hsl(150, 20%, 18%)",
 };
 
-const EXPORT_WIDTH = 1200;
+const EXPORT_WIDTH = 1080;
 const SCALE = 2;
 
 interface ExportImageButtonProps {
@@ -205,25 +205,27 @@ export default function ExportImageButton({
         className="absolute left-[-9999px] top-0"
         style={{
           width: EXPORT_WIDTH,
-          padding: 56,
+          padding: 60,
           backgroundColor: COLORS.background,
-          fontFamily: "'Amiri', 'Noto Sans', serif",
+          fontFamily: "'Inter', 'Amiri', sans-serif",
         }}
       >
         {/* Titre */}
-        <div style={{ marginBottom: 40 }}>
+        <div style={{ marginBottom: 48 }}>
+          {" "}
+          {/* ✅ Augmenté de 40 → 48 */}
           <div
             style={{
               display: "flex",
               alignItems: "baseline",
-              gap: 12,
-              marginBottom: 12,
+              gap: 16, // ✅ Augmenté de 12 → 16
+              marginBottom: 16, // ✅ Augmenté de 12 → 16
             }}
           >
             <span
               style={{
-                fontFamily: "Amiri, serif",
-                fontSize: 84, // ✅ Augmenté de 72 → 84
+                fontFamily: "'Amiri', serif",
+                fontSize: 110, // ✅ ÉNORME : 84 → 110
                 fontWeight: 700,
                 color: COLORS.primary,
               }}
@@ -232,7 +234,7 @@ export default function ExportImageButton({
             </span>
             <span
               style={{
-                fontSize: 28, // ✅ Augmenté de 24 → 28
+                fontSize: 36, // ✅ Augmenté de 28 → 36
                 color: COLORS.muted,
               }}
             >
@@ -241,8 +243,8 @@ export default function ExportImageButton({
           </div>
           <h2
             style={{
-              fontFamily: "Amiri, serif",
-              fontSize: 42, // ✅ Augmenté de 36 → 42
+              fontFamily: "'Amiri', serif",
+              fontSize: 52, // ✅ Augmenté de 42 → 52
               fontWeight: 700,
               color: COLORS.foreground,
             }}
@@ -254,8 +256,8 @@ export default function ExportImageButton({
         {/* Instructions */}
         <div
           style={{
-            marginBottom: 40,
-            padding: 40,
+            marginBottom: 48, // ✅ Augmenté de 40 → 48
+            padding: 48, // ✅ Augmenté de 40 → 48
             borderRadius: 16,
             border: `1px solid ${COLORS.border}`,
             backgroundColor: COLORS.card,
@@ -263,30 +265,30 @@ export default function ExportImageButton({
         >
           <h3
             style={{
-              fontFamily: "Amiri, serif",
-              fontSize: 26, // ✅ Augmenté de 22 → 26
+              fontFamily: "'Amiri', serif",
+              fontSize: 32, // ✅ Augmenté de 26 → 32
               fontWeight: 700,
               color: COLORS.foreground,
-              marginBottom: 20,
+              marginBottom: 24, // ✅ Augmenté de 20 → 24
             }}
           >
             {lang === "wo" ? "Ndimbal" : "Instructions"}
           </h3>
           <p
             style={{
-              fontSize: 34, // ✅ Augmenté de 28 → 34
+              fontSize: 42, // ✅ Augmenté de 34 → 42
               fontWeight: 600,
               color: COLORS.primary,
-              marginBottom: 28,
+              marginBottom: 32, // ✅ Augmenté de 28 → 32
             }}
           >
             {night.rakaat} Raka
           </p>
 
           {/* Liste des sourates */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
             {" "}
-            {/* ✅ gap augmenté de 8 → 10 */}
+            {/* ✅ Augmenté de 10 → 14 */}
             {night.surahs.map((surah, i) => (
               <div
                 key={i}
@@ -294,8 +296,8 @@ export default function ExportImageButton({
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "space-between",
-                  padding: "14px 20px", // ✅ Augmenté de 10px 16px → 14px 20px
-                  borderRadius: 8,
+                  padding: "18px 24px", // ✅ Augmenté de 14px 20px → 18px 24px
+                  borderRadius: 10, // ✅ Augmenté de 8 → 10
                   backgroundColor: "rgba(28, 41, 37, 0.5)",
                 }}
               >
@@ -303,7 +305,7 @@ export default function ExportImageButton({
                   style={{
                     fontWeight: 500,
                     color: COLORS.foreground,
-                    fontSize: 22, // ✅ Augmenté de 18 → 22
+                    fontSize: 28, // ✅ Augmenté de 22 → 28
                   }}
                 >
                   {getSurahName(surah)}
@@ -313,12 +315,12 @@ export default function ExportImageButton({
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    height: 36, // ✅ Augmenté de 32 → 36
-                    minWidth: 56, // ✅ Augmenté de 50 → 56
-                    padding: "0 14px", // ✅ Augmenté de 12px → 14px
-                    borderRadius: 6,
+                    height: 44, // ✅ Augmenté de 36 → 44
+                    minWidth: 66, // ✅ Augmenté de 56 → 66
+                    padding: "0 18px", // ✅ Augmenté de 14px → 18px
+                    borderRadius: 8, // ✅ Augmenté de 6 → 8
                     backgroundColor: "rgba(201, 162, 39, 0.1)",
-                    fontSize: 17, // ✅ Augmenté de 14 → 17
+                    fontSize: 22, // ✅ Augmenté de 17 → 22
                     fontWeight: 600,
                     color: COLORS.primary,
                   }}
@@ -332,16 +334,16 @@ export default function ExportImageButton({
           {night.extraInstructions && (
             <div
               style={{
-                marginTop: 24,
-                padding: 20,
-                borderRadius: 10,
+                marginTop: 28, // ✅ Augmenté de 24 → 28
+                padding: 24, // ✅ Augmenté de 20 → 24
+                borderRadius: 12, // ✅ Augmenté de 10 → 12
                 border: `1px solid ${COLORS.primary}4D`,
                 backgroundColor: "rgba(201, 162, 39, 0.08)",
               }}
             >
               <p
                 style={{
-                  fontSize: 16, // ✅ Augmenté de 14 → 16
+                  fontSize: 20, // ✅ Augmenté de 16 → 20
                   lineHeight: 1.8,
                   color: COLORS.foreground,
                 }}
@@ -357,8 +359,8 @@ export default function ExportImageButton({
         {/* Bienfaits */}
         <div
           style={{
-            marginBottom: 40,
-            padding: 40,
+            marginBottom: 48, // ✅ Augmenté de 40 → 48
+            padding: 48, // ✅ Augmenté de 40 → 48
             borderRadius: 16,
             border: `1px solid ${COLORS.border}`,
             backgroundColor: COLORS.card,
@@ -366,18 +368,18 @@ export default function ExportImageButton({
         >
           <h3
             style={{
-              fontFamily: "Amiri, serif",
-              fontSize: 26, // ✅ Augmenté de 22 → 26
+              fontFamily: "'Amiri', serif",
+              fontSize: 32, // ✅ Augmenté de 26 → 32
               fontWeight: 700,
               color: COLORS.foreground,
-              marginBottom: 20,
+              marginBottom: 24, // ✅ Augmenté de 20 → 24
             }}
           >
             Njariñ / Bienfaits
           </h3>
           <p
             style={{
-              fontSize: 19, // ✅ Augmenté de 16 → 19
+              fontSize: 24, // ✅ Augmenté de 19 → 24
               lineHeight: 2,
               color: COLORS.foreground,
               whiteSpace: "pre-line",
@@ -393,8 +395,8 @@ export default function ExportImageButton({
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            gap: 16,
-            marginTop: 16,
+            gap: 20, // ✅ Augmenté de 16 → 20
+            marginTop: 20, // ✅ Augmenté de 16 → 20
           }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -405,7 +407,7 @@ export default function ExportImageButton({
               e.currentTarget.style.display = "none";
             }}
             style={{
-              height: 60, // ✅ Augmenté de 52 → 60
+              height: 70, // ✅ Augmenté de 60 → 70
               width: "auto",
               objectFit: "contain",
               opacity: 0.7,
@@ -413,7 +415,7 @@ export default function ExportImageButton({
           />
           <p
             style={{
-              fontSize: 15, // ✅ Augmenté de 13 → 15
+              fontSize: 18, // ✅ Augmenté de 15 → 18
               color: COLORS.muted,
               textAlign: "center",
               opacity: 0.6,
