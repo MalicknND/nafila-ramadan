@@ -1,26 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Noto+Sans:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
+/* Light theme (default) */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: 40 33% 96%;
+  --foreground: 150 30% 12%;
+  --card: 40 30% 93%;
+  --card-foreground: 150 30% 12%;
+  --popover: 40 33% 96%;
+  --popover-foreground: 150 30% 12%;
+  --primary: 150 40% 22%;
+  --primary-foreground: 40 30% 96%;
+  --secondary: 40 25% 88%;
+  --secondary-foreground: 150 30% 15%;
+  --muted: 40 20% 90%;
+  --muted-foreground: 150 10% 40%;
+  --accent: 38 60% 55%;
+  --accent-foreground: 150 40% 10%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 40 20% 85%;
+  --input: 40 20% 85%;
+  --ring: 150 40% 22%;
+  --radius: 0.75rem;
+}
+
+/* Dark theme */
+.dark {
+  --background: 150 30% 8%;
+  --foreground: 40 25% 90%;
+  --card: 150 25% 12%;
+  --card-foreground: 40 25% 90%;
+  --popover: 150 25% 12%;
+  --popover-foreground: 40 25% 90%;
+  --primary: 38 60% 55%;
+  --primary-foreground: 150 30% 8%;
+  --secondary: 150 20% 18%;
+  --secondary-foreground: 40 25% 90%;
+  --muted: 150 15% 16%;
+  --muted-foreground: 40 15% 60%;
+  --accent: 150 35% 25%;
+  --accent-foreground: 40 25% 90%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 150 15% 20%;
+  --input: 150 15% 20%;
+  --ring: 38 60% 55%;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --font-sans: "Noto Sans", sans-serif;
+  --font-amiri: "Amiri", serif;
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  border-color: hsl(var(--border));
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: "Noto Sans", sans-serif;
+}
+
+h1, h2, h3, h4 {
+  font-family: "Amiri", serif;
+}
+
+.font-amiri {
+  font-family: "Amiri", serif;
 }
