@@ -40,6 +40,26 @@ export default function ExportImageButton({
   const getSurahName = (surah: { name: string; nameWolof: string }) =>
     lang === "wo" ? surah.nameWolof : surah.name;
 
+  const getExportText = () => {
+    const title = lang === "wo" ? night.titleWolof : night.titleFrench;
+    const instructionsLabel = lang === "wo" ? "Ndimbal" : "Instructions";
+    const surahsText = night.surahs
+      .map(
+        (s) =>
+          `${lang === "wo" ? s.nameWolof : s.name}\n×${s.count}`,
+      )
+      .join("\n\n");
+    const benefits = lang === "wo" ? night.benefitsWolof : night.benefitsFrench;
+    let text = `${title}\n${instructionsLabel}\n${night.rakaat} Rakaat\n\n${surahsText}`;
+    if (night.extraInstructions) {
+      text += `\n\n${
+        lang === "wo" ? night.extraInstructions.wo : night.extraInstructions.fr
+      }`;
+    }
+    text += `\n\nNjariñ / Bienfaits\n${benefits}`;
+    return text;
+  };
+
   const generateImage = useCallback(async (): Promise<Blob | null> => {
     const el = exportRef.current;
     if (!el) return null;
@@ -105,12 +125,12 @@ export default function ExportImageButton({
           await navigator.share({
             files: [file],
             title: `Nafila Nuit ${night.night}`,
-            text: getTitle(),
+            text: getExportText(),
           });
         } else {
           await navigator.share({
             title: `Nafila Nuit ${night.night}`,
-            text: `${getTitle()}\n\nTéléchargez l'app: ${typeof window !== "undefined" ? window.location.origin : ""}`,
+            text: `${getExportText()}\n\nTéléchargez l'app: ${typeof window !== "undefined" ? window.location.origin : ""}`,
           });
         }
       } catch (err) {
@@ -130,8 +150,12 @@ export default function ExportImageButton({
     const blob = await generateImage();
     if (blob && navigator.clipboard?.write) {
       try {
+        const text = getExportText();
         await navigator.clipboard.write([
-          new ClipboardItem({ "image/png": blob }),
+          new ClipboardItem({
+            "image/png": blob,
+            "text/plain": new Blob([text], { type: "text/plain" }),
+          }),
         ]);
       } catch {
         setError("Copie non supportée");
