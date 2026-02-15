@@ -19,7 +19,7 @@ export default function SurahList({ surahs, lang }: SurahListProps) {
           <span className="font-medium text-foreground">
             {lang === "wo" ? surah.nameWolof : surah.name}
           </span>
-          <span className="rounded-md bg-primary/10 px-2 py-0.5 text-sm font-semibold text-primary">
+          <span className="flex h-8 min-w-[50px] items-center justify-center rounded-md bg-primary/10 px-3 text-sm font-semibold text-primary">
             ×{surah.count}
           </span>
         </div>

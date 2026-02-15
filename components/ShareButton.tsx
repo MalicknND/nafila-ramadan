@@ -24,7 +24,7 @@ export default function ShareButton({ night, lang }: ShareButtonProps) {
     <button
       type="button"
       onClick={handleShare}
-      className="flex items-center justify-center gap-2 rounded-xl bg-[hsl(142,70%,40%)] px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-[hsl(142,70%,35%)]"
+      className="flex min-w-0 flex-1 items-center justify-center gap-2 rounded-xl bg-[hsl(142,70%,40%)] px-4 py-3 text-sm font-semibold text-white transition-all hover:bg-[hsl(142,70%,35%)] sm:flex-initial"
     >
       <Share2 className="h-4 w-4" />
       WhatsApp

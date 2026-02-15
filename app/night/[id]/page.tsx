@@ -7,7 +7,6 @@ import { useLanguage, useCompletedNights } from "@/components/Providers";
 import { nafilaData } from "@/data/ramadan";
 import Header from "@/components/Header";
 import SurahList from "@/components/SurahList";
-import ShareButton from "@/components/ShareButton";
 
 export default function NightDetailPage() {
   const params = useParams();
@@ -89,7 +88,7 @@ export default function NightDetailPage() {
         </div>
 
         {/* Actions */}
-        <div className="flex flex-col gap-3 sm:flex-row">
+        <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           <button
             type="button"
             onClick={() => toggle(night.night)}
@@ -105,7 +104,10 @@ export default function NightDetailPage() {
               : t("Tëral ne defna ko", "Marquer comme terminé")}
           </button>
 
-          <ShareButton night={night} lang={lang} />
+          <div className="flex gap-3 sm:flex-1">
+            {/* <ExportImageButton night={night} lang={lang} /> */}
+            {/* <ShareButton night={night} lang={lang} /> */}
+          </div>
         </div>
 
         {/* Navigation */}
