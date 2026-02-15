@@ -9,6 +9,11 @@ export const metadata: Metadata = {
     "Nafila du Ramadan - Les 30 Nafila extraits du livre de Serigne Souhaibou Mbacké",
 };
 
+// Dans app/layout.tsx (ou app/viewport.ts)
+
+export const viewport = {
+  themeColor: "#1a3d2e",
+};
 const inter = Inter({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
