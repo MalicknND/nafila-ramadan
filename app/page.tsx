@@ -19,7 +19,7 @@ export default function HomePage() {
       <section className="relative overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center opacity-20 dark:opacity-10"
-          style={{ backgroundImage: "url(/hero-pattern.jpg)" }}
+          style={{ backgroundImage: "url(/hero.jpeg)" }}
         />
         <div className="container relative mx-auto max-w-[1400px] px-4 py-10 text-center">
           <p className="mb-2 text-sm font-medium uppercase tracking-widest text-muted-foreground">
@@ -31,7 +31,7 @@ export default function HomePage() {
           <p className="mx-auto mt-3 max-w-md text-muted-foreground">
             {t(
               "30 Nafila yi Serigne Souhaibou Mbacké bind, Serigne Ibra Ndoye yébbalu ko.",
-              "Les 30 Nafila extraits du livre de Serigne Souhaibou Mbacké, compilés par Serigne Ibra Ndoye."
+              "Les 30 Nafila extraits du livre de Serigne Souhaibou Mbacké, compilés par Serigne Ibra Ndoye.",
             )}
           </p>
         </div>
@@ -59,7 +59,7 @@ export default function HomePage() {
           <p className="font-amiri text-base">
             {t(
               "Yàlla nafi yàgg lool té ande ak wéer — Serigne Mountakha Bassirou Mbacké",
-              "Qu'Allah dans sa générosité infinie accepte notre jeûne et nos nafila — Serigne Mountakha Bassirou Mbacké"
+              "Qu'Allah dans sa générosité infinie accepte notre jeûne et nos nafila — Serigne Mountakha Bassirou Mbacké",
             )}
           </p>
         </footer>
