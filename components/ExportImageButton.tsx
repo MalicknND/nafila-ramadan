@@ -141,7 +141,7 @@ export default function ExportImageButton({
     typeof navigator !== "undefined" && !!navigator.clipboard?.write;
 
   return (
-    <div className="relative">
+    <div className="relative overflow-hidden">
       <button
         type="button"
         onClick={() => setShowMenu(!showMenu)}
