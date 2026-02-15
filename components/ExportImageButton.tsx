@@ -44,6 +44,7 @@ export default function ExportImageButton({
     if (!exportRef.current) return null;
 
     try {
+      await new Promise((r) => setTimeout(r, 150));
       const canvas = await html2canvas(exportRef.current, {
         scale: SCALE,
         useCORS: true,
@@ -141,7 +142,7 @@ export default function ExportImageButton({
     typeof navigator !== "undefined" && !!navigator.clipboard?.write;
 
   return (
-    <div className="relative overflow-hidden">
+    <div className="relative">
       <button
         type="button"
         onClick={() => setShowMenu(!showMenu)}
@@ -199,16 +200,22 @@ export default function ExportImageButton({
 
       {error && <p className="mt-2 text-sm text-destructive">{error}</p>}
 
-      {/* Template caché pour l'export */}
+      {/* Template invisible mais dans le viewport pour un rendu correct par html2canvas */}
       <div
         ref={exportRef}
-        className="absolute left-[-9999px] top-0"
         style={{
+          position: "fixed",
+          left: 0,
+          top: 0,
+          zIndex: -9999,
+          opacity: 0,
+          pointerEvents: "none",
           width: EXPORT_WIDTH,
           padding: 60,
           backgroundColor: COLORS.background,
           fontFamily: "'Inter', 'Amiri', sans-serif",
         }}
+        aria-hidden
       >
         {/* Titre */}
         <div style={{ marginBottom: 48 }}>
