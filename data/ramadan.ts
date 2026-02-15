@@ -74,7 +74,7 @@ export const nafilaData: NafilaNight[] = [
       { name: "Al-Fatiha", nameWolof: "Fatiha", count: 1 },
       { name: "Al-Ikhlass", nameWolof: "Ikhlass", count: 12 },
     ],
-    benefitsWolof: "Serigne bi néna kouko déff \"Inchallah mél nani kou diouli diouniy raka (1000 raka) ci makamatoul Ibrahim. Diouli ci diakay Makka diouniy raka (1000 Raka). Sarakhé diouniy deureum. Léél diouni niou khiif. Té bou gnaané désnako nangou. Mélnani yitt kou diokh ndogou khéétou yonénte bi sala lahou aleyhi wasalam wépp. Bou faatou yitt gnou boléko ci gni déé ci djihaad té désnako mouseul thji métitou déé. Té baméélam désnakako défal mou bokk thia daaray aldiana ya. Té bouy dékki dana andak léér kou mélni diante bi. Ta dana tabi aldiana té désouko khiisaab. Té sa mbolom yonénte ya lay bokk bou euleugué.\"",
+    benefitsWolof: "Serigne bi néna kouko déff \"Inchallah mél nani kou diouli diouniy rakaat (1000 rakaat) ci makamatoul Ibrahim. Diouli ci diakay Makka diouniy rakaat (1000 Rakaat). Sarakhé diouniy deureum. Léél diouni niou khiif. Té bou gnaané désnako nangou. Mélnani yitt kou diokh ndogou khéétou yonénte bi sala lahou aleyhi wasalam wépp. Bou faatou yitt gnou boléko ci gni déé ci djihaad té désnako mouseul thji métitou déé. Té baméélam désnakako défal mou bokk thia daaray aldiana ya. Té bouy dékki dana andak léér kou mélni diante bi. Ta dana tabi aldiana té désouko khiisaab. Té sa mbolom yonénte ya lay bokk bou euleugué.\"",
     benefitsFrench: "Le Maître a dit : \"Inchallah, il sera comme celui qui a prié 1000 rakaat à la station d'Ibrahim, prié 1000 rakaat à la Kaaba de La Mecque, fait l'aumône de mille pièces d'or, nourri mille affamés. Le jour du Jugement il sera accepté. Il sera comme celui qui a nourri tous les proches du Prophète (SAW). À sa mort il sera compté parmi les martyrs, protégé de l'agonie de la mort. Sa tombe sera comme un jardin du Paradis. Il entrera au Paradis sans jugement et sera parmi les prophètes.\"",
   },
   {
@@ -167,7 +167,7 @@ export const nafilaData: NafilaNight[] = [
       { name: "Al-Fatiha", nameWolof: "Fatiha", count: 1 },
       { name: "Al-Ikhlass", nameWolof: "Ikhlass", count: 5 },
     ],
-    benefitsWolof: "Serigne bi néna kouko déff \"Inchallah Désnako tabakhal keur gou reuy thia aldiana loo khamni dana ame diourom gnaari néék (7 chambres) yoo khamni lépp wourouss laydoone. Néék bouci né dana ame diouniy lall (1000 lits). Lall bouci né béne sokhna (Une femme) dana thja nékk. Ta désnako thja bindeul touyaabay kou woor gnaar fouki atte (20 ans) ak kou diouli diouniy raka (1000 raka).\"",
+    benefitsWolof: "Serigne bi néna kouko déff \"Inchallah Désnako tabakhal keur gou reuy thia aldiana loo khamni dana ame diourom gnaari néék (7 chambres) yoo khamni lépp wourouss laydoone. Néék bouci né dana ame diouniy lall (1000 lits). Lall bouci né béne sokhna (Une femme) dana thja nékk. Ta désnako thja bindeul touyaabay kou woor gnaar fouki atte (20 ans) ak kou diouli diouniy rakaat (1000 rakaat).\"",
     benefitsFrench: "Le Maître a dit : \"Inchallah, on lui construira au Paradis une grande demeure avec 7 chambres, toutes en or. Chaque chambre contiendra 1000 lits. Sur chaque lit se trouvera une épouse. On lui inscrira la récompense de 20 ans de jeûne et de 1000 rakaat de prière.\"",
   },
   {

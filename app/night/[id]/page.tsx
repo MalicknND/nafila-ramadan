@@ -65,7 +65,7 @@ export default function NightDetailPage() {
             {t("Ndimbal", "Instructions")}
           </h3>
           <p className="mb-4 text-lg font-semibold text-primary">
-            {night.rakaat} Raka
+            {night.rakaat} Rakaat
           </p>
 
           <SurahList surahs={night.surahs} lang={lang} />

@@ -13,8 +13,8 @@ export default function ShareButton({ night, lang }: ShareButtonProps) {
   const handleShare = () => {
     const text =
       lang === "wo"
-        ? `📿 Nafila Guddi ${night.night} - ${night.rakaat} Raka\n${night.titleWolof}\n\n${night.benefitsWolof}`
-        : `📿 Nafila Nuit ${night.night} - ${night.rakaat} Raka\n${night.titleFrench}\n\n${night.benefitsFrench}`;
+        ? `📿 Nafila Guddi ${night.night} - ${night.rakaat} Rakaat\n${night.titleWolof}\n\n${night.benefitsWolof}`
+        : `📿 Nafila Nuit ${night.night} - ${night.rakaat} Rakaat\n${night.titleFrench}\n\n${night.benefitsFrench}`;
 
     const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
     window.open(url, "_blank");

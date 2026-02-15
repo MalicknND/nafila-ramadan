@@ -282,7 +282,7 @@ export default function ExportImageButton({
               marginBottom: 32, // ✅ Augmenté de 28 → 32
             }}
           >
-            {night.rakaat} Raka
+            {night.rakaat} Rakaat
           </p>
 
           {/* Liste des sourates */}
