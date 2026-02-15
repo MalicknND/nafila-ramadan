@@ -7,6 +7,8 @@ import { useLanguage, useCompletedNights } from "@/components/Providers";
 import { nafilaData } from "@/data/ramadan";
 import Header from "@/components/Header";
 import SurahList from "@/components/SurahList";
+import ShareButton from "@/components/ShareButton";
+import ExportImageButton from "@/components/ExportImageButton";
 
 export default function NightDetailPage() {
   const params = useParams();
@@ -105,8 +107,8 @@ export default function NightDetailPage() {
           </button>
 
           <div className="flex gap-3 sm:flex-1">
-            {/* <ExportImageButton night={night} lang={lang} /> */}
-            {/* <ShareButton night={night} lang={lang} /> */}
+            <ExportImageButton night={night} lang={lang} />
+            <ShareButton night={night} lang={lang} />
           </div>
         </div>
 
