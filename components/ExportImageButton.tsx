@@ -41,11 +41,13 @@ export default function ExportImageButton({
     lang === "wo" ? surah.nameWolof : surah.name;
 
   const generateImage = useCallback(async (): Promise<Blob | null> => {
-    if (!exportRef.current) return null;
+    const el = exportRef.current;
+    if (!el) return null;
 
     try {
-      await new Promise((r) => setTimeout(r, 150));
-      const canvas = await html2canvas(exportRef.current, {
+      await new Promise((r) => setTimeout(r, 100));
+
+      const canvas = await html2canvas(el, {
         scale: SCALE,
         useCORS: true,
         allowTaint: true,
@@ -53,6 +55,10 @@ export default function ExportImageButton({
         logging: false,
         width: EXPORT_WIDTH,
         windowWidth: EXPORT_WIDTH,
+        imageTimeout: 8000,
+        onclone: (_doc, clonedEl) => {
+          clonedEl.style.opacity = "1";
+        },
       });
 
       return new Promise((resolve, reject) => {
