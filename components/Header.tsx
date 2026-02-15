@@ -4,17 +4,27 @@ import { Moon, Sun, Globe } from "lucide-react";
 import { useDarkMode } from "@/components/Providers";
 import { useLanguage } from "@/components/Providers";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
   const { isDark, toggle: toggleDark } = useDarkMode();
   const { lang, setLang, t } = useLanguage();
+  const pathname = usePathname();
+
+  const handleLogoClick = (e: React.MouseEvent) => {
+    if (pathname === "/") {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
       <div className="container mx-auto flex max-w-[1400px] items-center justify-between px-4 py-3">
-        <div className="flex items-center gap-2">
+        <Link href="/" onClick={handleLogoClick} className="flex items-center gap-2">
           <Image src="/logo.png" alt="Logo" width={60} height={60} />
-        </div>
+        </Link>
         <div className="flex items-center gap-2">
           <button
             onClick={() => setLang(lang === "wo" ? "fr" : "wo")}
