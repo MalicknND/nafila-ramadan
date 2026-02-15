@@ -29,7 +29,7 @@ export default function RootLayout({
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){var d=document.documentElement,c=d.classList;try{var s=localStorage.getItem('nafila-dark');if(s==='true')c.add('dark');else if(s==='false')c.remove('dark');}catch(e){}})();`,
+            __html: `(function(){var d=document.documentElement,c=d.classList;try{var s=localStorage.getItem('nafila-dark');if(s==='false')c.remove('dark');else c.add('dark');}catch(e){c.add('dark');}})();`,
           }}
         />
       </head>

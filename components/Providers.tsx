@@ -56,15 +56,14 @@ export function useLanguage() {
 }
 
 export function useDarkMode() {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(true); // Dark par défaut
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-    setIsDark(
-      typeof window !== "undefined" &&
-        localStorage.getItem("nafila-dark") === "true"
-    );
+    const stored = typeof window !== "undefined" && localStorage.getItem("nafila-dark");
+    // null ou "true" = dark, "false" = light
+    setIsDark(stored !== "false");
   }, []);
 
   useEffect(() => {
