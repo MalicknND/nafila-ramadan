@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider, RamadanStartProvider } from "@/components/Providers";
+import SuggestionsModal from "@/components/SuggestionsModal";
 
 const SITE_URL = "https://www.nafila-ramadan.com";
 
@@ -65,9 +66,12 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.variable} ${inter.className}`}>
-        <LanguageProvider>
-          <RamadanStartProvider>{children}</RamadanStartProvider>
-        </LanguageProvider>
+<LanguageProvider>
+        <RamadanStartProvider>
+          {children}
+          <SuggestionsModal />
+        </RamadanStartProvider>
+      </LanguageProvider>
       </body>
     </html>
   );
