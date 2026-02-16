@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider, RamadanStartProvider } from "@/components/Providers";
 
-const SITE_URL = "https://nafila-ramadan.vercel.app";
+const SITE_URL = "https://www.nafila-ramadan.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

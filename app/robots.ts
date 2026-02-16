@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://nafila-ramadan.vercel.app/sitemap.xml",
+    sitemap: "https://www.nafila-ramadan.com/sitemap.xml",
   };
 }

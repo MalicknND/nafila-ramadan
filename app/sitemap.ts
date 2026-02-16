@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { nafilaData } from "@/data/ramadan";
 
-const SITE_URL = "https://nafila-ramadan.vercel.app";
+const SITE_URL = "https://www.nafila-ramadan.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const nights = nafilaData.map((night) => ({

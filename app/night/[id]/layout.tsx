@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { nafilaData } from "@/data/ramadan";
 
-const SITE_URL = "https://nafila-ramadan.vercel.app";
+const SITE_URL = "https://www.nafila-ramadan.com";
 
 type Props = {
   params: Promise<{ id: string }>;
