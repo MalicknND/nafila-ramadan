@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { LanguageProvider } from "@/components/Providers";
+import { LanguageProvider, RamadanStartProvider } from "@/components/Providers";
 
 export const metadata: Metadata = {
   title: "Nafila Ramadan",
@@ -35,7 +35,9 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.variable} ${inter.className}`}>
-        <LanguageProvider>{children}</LanguageProvider>
+        <LanguageProvider>
+        <RamadanStartProvider>{children}</RamadanStartProvider>
+      </LanguageProvider>
       </body>
     </html>
   );

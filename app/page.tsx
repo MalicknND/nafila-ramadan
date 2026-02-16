@@ -3,14 +3,20 @@
 import Image from "next/image";
 import { useLanguage } from "@/components/Providers";
 import { useCompletedNights } from "@/components/Providers";
+import { useRamadanStart } from "@/components/Providers";
 import { nafilaData } from "@/data/ramadan";
 import Header from "@/components/Header";
 import ProgressBar from "@/components/ProgressBar";
 import NightCard from "@/components/NightCard";
+import TodayNafila from "@/components/TodayNafila";
+import RamadanSetup from "@/components/RamadanSetup";
 
 export default function HomePage() {
   const { t } = useLanguage();
   const { isCompleted, count } = useCompletedNights();
+  const { isSet, currentNight } = useRamadanStart();
+
+  const todayNight = nafilaData.find((n) => n.night === currentNight);
 
   return (
     <div className="min-h-screen bg-background">
@@ -41,22 +47,42 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Progress */}
+      {/* Main */}
       <main className="container mx-auto max-w-[1400px] px-4 pb-12">
-        <div className="mb-6">
-          <ProgressBar completed={count} total={30} />
-        </div>
+        {!isSet ? (
+          <div className="mx-auto max-w-md pt-6">
+            <RamadanSetup />
+          </div>
+        ) : (
+          <>
+            <div className="mb-6">
+              <ProgressBar completed={count} total={30} />
+            </div>
 
-        {/* Grid */}
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {nafilaData.map((night) => (
-            <NightCard
-              key={night.night}
-              night={night}
-              isCompleted={isCompleted(night.night)}
-            />
-          ))}
-        </div>
+            {/* Nafila du jour - prioritaire */}
+            {todayNight && (
+              <section className="mb-8">
+                <TodayNafila night={todayNight} />
+              </section>
+            )}
+
+            {/* Toutes les nuits */}
+            <div>
+              <h3 className="mb-4 font-amiri text-lg font-semibold text-foreground">
+                {t("30 Guddi yépp", "Toutes les 30 nuits")}
+              </h3>
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {nafilaData.map((night) => (
+                  <NightCard
+                    key={night.night}
+                    night={night}
+                    isCompleted={isCompleted(night.night)}
+                  />
+                ))}
+              </div>
+            </div>
+          </>
+        )}
 
         {/* Footer */}
         <footer className="mt-12 border-t border-border pt-6 text-center text-sm text-muted-foreground">

@@ -77,6 +77,88 @@ export function useDarkMode() {
   return { isDark, toggle };
 }
 
+const RAMADAN_STORAGE_KEY = "nafila-ramadan-start";
+
+function getDaysSince(date: Date): number {
+  const now = new Date();
+  now.setHours(0, 0, 0, 0);
+  const start = new Date(date);
+  start.setHours(0, 0, 0, 0);
+  return Math.floor((now.getTime() - start.getTime()) / (24 * 60 * 60 * 1000));
+}
+
+interface RamadanStartContextType {
+  startDate: string | null;
+  setStartDate: (date: Date) => void;
+  clearStartDate: () => void;
+  currentNight: number;
+  isSet: boolean;
+  daysSince: number;
+}
+
+const RamadanStartContext = createContext<RamadanStartContextType | undefined>(
+  undefined
+);
+
+export function RamadanStartProvider({ children }: { children: ReactNode }) {
+  const [startDate, setStartDateState] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    const stored =
+      typeof window !== "undefined" &&
+      localStorage.getItem(RAMADAN_STORAGE_KEY);
+    setStartDateState(stored || null);
+    setMounted(true);
+  }, []);
+
+  const setStartDate = useCallback((date: Date) => {
+    const iso = date.toISOString().slice(0, 10);
+    setStartDateState(iso);
+    if (typeof window !== "undefined") {
+      localStorage.setItem(RAMADAN_STORAGE_KEY, iso);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (mounted && startDate) {
+      localStorage.setItem(RAMADAN_STORAGE_KEY, startDate);
+    }
+  }, [startDate, mounted]);
+
+  const clearStartDate = useCallback(() => {
+    setStartDateState(null);
+    if (typeof window !== "undefined") {
+      localStorage.removeItem(RAMADAN_STORAGE_KEY);
+    }
+  }, []);
+
+  const parsedDate = startDate ? new Date(startDate + "T12:00:00") : null;
+  const daysSince = parsedDate ? getDaysSince(parsedDate) : 0;
+  const currentNight = Math.max(1, Math.min(30, daysSince + 1));
+
+  const value: RamadanStartContextType = {
+    startDate,
+    setStartDate,
+    clearStartDate,
+    currentNight,
+    isSet: !!startDate,
+    daysSince,
+  };
+
+  return (
+    <RamadanStartContext.Provider value={value}>
+      {children}
+    </RamadanStartContext.Provider>
+  );
+}
+
+export function useRamadanStart() {
+  const ctx = useContext(RamadanStartContext);
+  if (!ctx) throw new Error("useRamadanStart must be used within RamadanStartProvider");
+  return ctx;
+}
+
 const STORAGE_KEY = "nafila-completed";
 
 export function useCompletedNights() {
