@@ -65,7 +65,7 @@ export default function RamadanSetup({
       </div>
       <p className="mb-6 text-center text-muted-foreground">
         {initialDate
-          ? "Tu verras la Nafila du jour chaque fois que tu viendras."
+          ? "Tu verras la Nafila du jour et la nuit du Destin (selon ton premier jour) chaque fois que tu viendras."
           : "Optionnel. Tu verras la Nafila du jour et la nuit du Destin une fois la date définie."}
       </p>
       <form onSubmit={handleSubmit} className="space-y-4">

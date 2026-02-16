@@ -11,11 +11,18 @@ import TodayNafila from "@/components/TodayNafila";
 
 export default function HomePage() {
   const { isCompleted, count } = useCompletedNights();
-  const { isSet, currentNight, hasStarted, daysUntilFirstNight, laylatulQadrNight } =
-    useRamadanStart();
+  const {
+    isSet,
+    currentNight,
+    hasStarted,
+    daysUntilFirstNight,
+    laylatulQadrNight,
+  } = useRamadanStart();
 
   const todayNight =
-    isSet && hasStarted ? nafilaData.find((n) => n.night === currentNight) : null;
+    isSet && hasStarted
+      ? nafilaData.find((n) => n.night === currentNight)
+      : null;
 
   return (
     <div className="min-h-screen bg-background">
@@ -38,8 +45,8 @@ export default function HomePage() {
             Nafila du Ramadan
           </h2>
           <p className="mx-auto mt-3 max-w-md text-muted-foreground">
-            Les 30 Nafila extraits du livre de Serigne Souhaibou Mbacké, compilés
-            par Serigne Ibra Ndoye.
+            Les 30 Nafila extraits du livre de Serigne Souhaibou Mbacké,
+            compilés par Serigne Ibra Ndoye.
           </p>
         </div>
       </section>
@@ -56,8 +63,11 @@ export default function HomePage() {
             <p className="text-center text-sm text-muted-foreground">
               Définissez votre date de début du Ramadan pour voir la{" "}
               <strong className="text-foreground">Nafila du jour</strong> et la{" "}
-              <strong className="text-foreground">nuit du Destin</strong> (Laylatul Qadr).{" "}
-              <span className="text-muted-foreground/80">Optionnel — via l&apos;icône calendrier en haut.</span>
+              <strong className="text-foreground">nuit du Destin</strong>{" "}
+              (Laylatul Qadr).{" "}
+              <span className="text-muted-foreground/80">
+                Optionnel — via l&apos;icône calendrier en haut.
+              </span>
             </p>
           </section>
         )}
@@ -66,8 +76,8 @@ export default function HomePage() {
         {laylatulQadrNight && (
           <section className="mb-6 rounded-2xl border border-primary/40 bg-primary/5 p-4">
             <p className="text-center font-amiri text-lg font-semibold text-primary">
-              Selon le tableau de Khadim Rassoul (Cheikh Ahmadou Bamba), la
-              Nuit du Destin (Laylatul Qadr) serait la{" "}
+              Selon le tableau de Khadim Rassoul (Cheikh Ahmadou Bamba), la Nuit
+              du Destin (Laylatul Qadr) serait la{" "}
               <span className="font-bold">nuit {laylatulQadrNight}</span>.
             </p>
             <p className="mt-2 text-center text-sm text-muted-foreground">
@@ -118,7 +128,7 @@ export default function HomePage() {
         <footer className="mt-12 border-t border-border pt-6 text-center text-sm text-muted-foreground">
           <p className="font-amiri text-base">
             Qu&apos;Allah dans sa générosité infinie accepte notre jeûne et nos
-            nafila — Serigne Mountakha Bassirou Mbacké
+            nafilas
           </p>
         </footer>
       </main>
