@@ -83,7 +83,7 @@ export default function RamadanSetup({
               setDateValue(e.target.value);
               setError(false);
             }}
-            className={`w-full min-h-[48px] rounded-xl border bg-background px-4 py-3 text-base text-foreground transition-colors focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 ${
+            className={`w-full rounded-lg border bg-background px-3 py-2.5 text-sm text-foreground transition-colors focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 ${
               error ? "border-destructive" : "border-border"
             }`}
             style={{ fontSize: "16px" }}
