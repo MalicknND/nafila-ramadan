@@ -8,7 +8,7 @@ import {
   useCallback,
   type ReactNode,
 } from "react";
-import { toLocalDateString } from "@/lib/utils";
+import { toLocalDateString, getLaylatulQadrNight } from "@/lib/utils";
 import type { Language } from "@/types";
 
 interface LanguageContextType {
@@ -98,6 +98,7 @@ interface RamadanStartContextType {
   daysSince: number;
   hasStarted: boolean;
   daysUntilFirstNight: number; // jours avant la 1ère nuit (0 = ce soir)
+  laylatulQadrNight: number | null; // selon le calendrier de Khadim Rassoul
 }
 
 const RamadanStartContext = createContext<RamadanStartContextType | undefined>(
@@ -150,6 +151,8 @@ export function RamadanStartProvider({ children }: { children: ReactNode }) {
   const daysUntilFirstNight =
     daysSince < -1 ? -daysSince - 1 : 0;
 
+  const laylatulQadrNight = startDate ? getLaylatulQadrNight(startDate) : null;
+
   const value: RamadanStartContextType = {
     startDate,
     setStartDate,
@@ -159,6 +162,7 @@ export function RamadanStartProvider({ children }: { children: ReactNode }) {
     daysSince,
     hasStarted,
     daysUntilFirstNight,
+    laylatulQadrNight,
   };
 
   return (

@@ -12,7 +12,7 @@ import RamadanSetup from "@/components/RamadanSetup";
 
 export default function HomePage() {
   const { isCompleted, count } = useCompletedNights();
-  const { isSet, currentNight, hasStarted, daysUntilFirstNight } =
+  const { isSet, currentNight, hasStarted, daysUntilFirstNight, laylatulQadrNight } =
     useRamadanStart();
 
   const todayNight =
@@ -57,6 +57,20 @@ export default function HomePage() {
               <ProgressBar completed={count} total={30} />
             </div>
 
+            {/* Nuit du Destin (Laylatul Qadr) - calendrier Khadim Rassoul */}
+            {laylatulQadrNight && (
+              <section className="mb-6 rounded-2xl border border-primary/40 bg-primary/5 p-4">
+                <p className="text-center font-amiri text-lg font-semibold text-primary">
+                  Selon le tableau de Khadim Rassoul (Cheikh Ahmadou Bamba), la
+                  Nuit du Destin (Laylatul Qadr) serait la{" "}
+                  <span className="font-bold">nuit {laylatulQadrNight}</span>.
+                </p>
+                <p className="mt-2 text-center text-sm text-muted-foreground">
+                  Elle tombe toujours une nuit du jeudi au vendredi, jour impair.
+                </p>
+              </section>
+            )}
+
             {/* Nafila du jour - prioritaire (dès la veille du Ramadan) */}
             {todayNight && (
               <section className="mb-8">
@@ -89,6 +103,7 @@ export default function HomePage() {
                     key={night.night}
                     night={night}
                     isCompleted={isCompleted(night.night)}
+                    isLaylatulQadr={laylatulQadrNight === night.night}
                   />
                 ))}
               </div>

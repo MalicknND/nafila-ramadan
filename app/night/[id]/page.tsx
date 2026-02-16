@@ -3,7 +3,7 @@
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Check } from "lucide-react";
-import { useLanguage, useCompletedNights } from "@/components/Providers";
+import { useLanguage, useCompletedNights, useRamadanStart } from "@/components/Providers";
 import { nafilaData } from "@/data/ramadan";
 import Header from "@/components/Header";
 import SurahList from "@/components/SurahList";
@@ -13,6 +13,7 @@ export default function NightDetailPage() {
   const params = useParams();
   const { lang, setLang } = useLanguage();
   const { isCompleted, toggle } = useCompletedNights();
+  const { laylatulQadrNight } = useRamadanStart();
 
   const nightNum = Number(params.id);
   const night = nafilaData.find((n) => n.night === nightNum);
@@ -28,6 +29,7 @@ export default function NightDetailPage() {
   }
 
   const completed = isCompleted(night.night);
+  const isLaylatulQadr = laylatulQadrNight === night.night;
 
   return (
     <div className="min-h-screen bg-background">
@@ -42,6 +44,18 @@ export default function NightDetailPage() {
           <ArrowLeft className="h-4 w-4" />
           Retour
         </Link>
+
+        {/* Badge Laylatul Qadr */}
+        {isLaylatulQadr && (
+          <div className="mb-6 rounded-xl border border-primary/40 bg-primary/10 p-4 text-center">
+            <p className="font-amiri text-lg font-semibold text-primary">
+              Nuit du Destin (Laylatul Qadr)
+            </p>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Selon le calendrier de Khadim Rassoul (Cheikh Ahmadou Bamba)
+            </p>
+          </div>
+        )}
 
         {/* Title */}
         <div className="mb-6">

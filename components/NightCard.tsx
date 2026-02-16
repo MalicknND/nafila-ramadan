@@ -7,13 +7,14 @@ import type { NafilaNight } from "@/types";
 interface NightCardProps {
   night: NafilaNight;
   isCompleted: boolean;
+  isLaylatulQadr?: boolean;
 }
 
-export default function NightCard({ night, isCompleted }: NightCardProps) {
+export default function NightCard({ night, isCompleted, isLaylatulQadr }: NightCardProps) {
   return (
     <Link
       href={`/night/${night.night}`}
-      className="group relative block overflow-hidden rounded-xl border border-border bg-card p-5 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-md"
+      className={`group relative block overflow-hidden rounded-xl border border-border bg-card p-5 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-md ${isLaylatulQadr ? "border-primary/50 ring-1 ring-primary/20" : ""}`}
       style={{ animationDelay: `${night.night * 30}ms` }}
     >
       {isCompleted && (
@@ -22,7 +23,13 @@ export default function NightCard({ night, isCompleted }: NightCardProps) {
         </div>
       )}
 
-      <div className="mb-3 flex items-baseline gap-2">
+      {isLaylatulQadr && (
+        <div className="absolute left-3 top-3 rounded-md bg-primary/20 px-2 py-0.5 text-xs font-medium text-primary">
+          Laylatul Qadr
+        </div>
+      )}
+
+      <div className={`mb-3 flex items-baseline gap-2 ${isLaylatulQadr ? "pt-6" : ""}`}>
         <span className="font-amiri text-3xl font-bold text-primary">
           {night.night}
         </span>
