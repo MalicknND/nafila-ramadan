@@ -14,9 +14,11 @@ import RamadanSetup from "@/components/RamadanSetup";
 export default function HomePage() {
   const { t } = useLanguage();
   const { isCompleted, count } = useCompletedNights();
-  const { isSet, currentNight } = useRamadanStart();
+  const { isSet, currentNight, hasStarted, daysUntilFirstNight } =
+    useRamadanStart();
 
-  const todayNight = nafilaData.find((n) => n.night === currentNight);
+  const todayNight =
+    hasStarted ? nafilaData.find((n) => n.night === currentNight) : null;
 
   return (
     <div className="min-h-screen bg-background">
@@ -59,10 +61,33 @@ export default function HomePage() {
               <ProgressBar completed={count} total={30} />
             </div>
 
-            {/* Nafila du jour - prioritaire */}
+            {/* Nafila du jour - prioritaire (dès la veille du Ramadan) */}
             {todayNight && (
               <section className="mb-8">
                 <TodayNafila night={todayNight} />
+              </section>
+            )}
+
+            {/* Pas encore le Ramadan : compte à rebours */}
+            {isSet && !hasStarted && daysUntilFirstNight > 0 && (
+              <section className="mb-8 rounded-2xl border border-primary/40 bg-card p-6 text-center">
+                <p className="font-amiri text-xl font-bold text-primary">
+                  {daysUntilFirstNight === 1
+                    ? t(
+                        "Guddi gu njëkk ci benn fan",
+                        "Première nuit de Nafila dans 1 jour",
+                      )
+                    : t(
+                        `Guddi gu njëkk ci ${daysUntilFirstNight} fan`,
+                        `Première nuit de Nafila dans ${daysUntilFirstNight} jours`,
+                      )}
+                </p>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  {t(
+                    "Téré ci bépp guddi sa Nafila.",
+                    "Tu verras la Nafila du jour à l'approche du Ramadan.",
+                  )}
+                </p>
               </section>
             )}
 

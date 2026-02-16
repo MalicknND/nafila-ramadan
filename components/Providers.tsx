@@ -94,6 +94,8 @@ interface RamadanStartContextType {
   currentNight: number;
   isSet: boolean;
   daysSince: number;
+  hasStarted: boolean;
+  daysUntilFirstNight: number; // jours avant la 1ère nuit (0 = ce soir)
 }
 
 const RamadanStartContext = createContext<RamadanStartContextType | undefined>(
@@ -135,7 +137,13 @@ export function RamadanStartProvider({ children }: { children: ReactNode }) {
 
   const parsedDate = startDate ? new Date(startDate + "T12:00:00") : null;
   const daysSince = parsedDate ? getDaysSince(parsedDate) : 0;
-  const currentNight = Math.max(1, Math.min(30, daysSince + 1));
+  // Nuit 1 = veille du 1er jour de jeûne (ex: Ramadan 17 fév → Nuit 1 = soir du 16)
+  const hasStarted = daysSince >= -1;
+  const currentNight = hasStarted
+    ? Math.max(1, Math.min(30, daysSince + 2))
+    : 1;
+  const daysUntilFirstNight =
+    daysSince < -1 ? -daysSince - 1 : 0;
 
   const value: RamadanStartContextType = {
     startDate,
@@ -144,6 +152,8 @@ export function RamadanStartProvider({ children }: { children: ReactNode }) {
     currentNight,
     isSet: !!startDate,
     daysSince,
+    hasStarted,
+    daysUntilFirstNight,
   };
 
   return (
