@@ -8,7 +8,6 @@ import Header from "@/components/Header";
 import ProgressBar from "@/components/ProgressBar";
 import NightCard from "@/components/NightCard";
 import TodayNafila from "@/components/TodayNafila";
-import RamadanSetup from "@/components/RamadanSetup";
 
 export default function HomePage() {
   const { isCompleted, count } = useCompletedNights();
@@ -16,7 +15,7 @@ export default function HomePage() {
     useRamadanStart();
 
   const todayNight =
-    hasStarted ? nafilaData.find((n) => n.night === currentNight) : null;
+    isSet && hasStarted ? nafilaData.find((n) => n.night === currentNight) : null;
 
   return (
     <div className="min-h-screen bg-background">
@@ -47,69 +46,73 @@ export default function HomePage() {
 
       {/* Main */}
       <main className="container mx-auto max-w-[1400px] px-4 pb-12">
-        {!isSet ? (
-          <div className="mx-auto max-w-md pt-6">
-            <RamadanSetup />
-          </div>
-        ) : (
-          <>
-            <div className="mb-6">
-              <ProgressBar completed={count} total={30} />
-            </div>
+        <div className="mb-6">
+          <ProgressBar completed={count} total={30} />
+        </div>
 
-            {/* Nuit du Destin (Laylatul Qadr) - calendrier Khadim Rassoul */}
-            {laylatulQadrNight && (
-              <section className="mb-6 rounded-2xl border border-primary/40 bg-primary/5 p-4">
-                <p className="text-center font-amiri text-lg font-semibold text-primary">
-                  Selon le tableau de Khadim Rassoul (Cheikh Ahmadou Bamba), la
-                  Nuit du Destin (Laylatul Qadr) serait la{" "}
-                  <span className="font-bold">nuit {laylatulQadrNight}</span>.
-                </p>
-                <p className="mt-2 text-center text-sm text-muted-foreground">
-                  Elle tombe toujours une nuit du jeudi au vendredi, jour impair.
-                </p>
-              </section>
-            )}
-
-            {/* Nafila du jour - prioritaire (dès la veille du Ramadan) */}
-            {todayNight && (
-              <section className="mb-8">
-                <TodayNafila night={todayNight} />
-              </section>
-            )}
-
-            {/* Pas encore le Ramadan : compte à rebours */}
-            {isSet && !hasStarted && daysUntilFirstNight > 0 && (
-              <section className="mb-8 rounded-2xl border border-primary/40 bg-card p-6 text-center">
-                <p className="font-amiri text-xl font-bold text-primary">
-                  {daysUntilFirstNight === 1
-                    ? "Première nuit de Nafila dans 1 jour"
-                    : `Première nuit de Nafila dans ${daysUntilFirstNight} jours`}
-                </p>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  Tu verras la Nafila du jour à l&apos;approche du Ramadan.
-                </p>
-              </section>
-            )}
-
-            {/* Toutes les nuits */}
-            <div>
-              <h3 className="mb-4 font-amiri text-lg font-semibold text-foreground">
-                Toutes les 30 nuits
-              </h3>
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {nafilaData.map((night) => (
-                  <NightCard
-                    key={night.night}
-                    night={night}
-                    isCompleted={isCompleted(night.night)}
-                    isLaylatulQadr={laylatulQadrNight === night.night}
-                  />
-                ))}
-              </div>
-            </div>
-          </>
+        {/* Invitation à définir la date (optionnel) */}
+        {!isSet && (
+          <section className="mb-6 rounded-2xl border border-dashed border-border bg-card/50 p-4">
+            <p className="text-center text-sm text-muted-foreground">
+              Définissez votre date de début du Ramadan pour voir la{" "}
+              <strong className="text-foreground">Nafila du jour</strong> et la{" "}
+              <strong className="text-foreground">nuit du Destin</strong> (Laylatul Qadr).{" "}
+              <span className="text-muted-foreground/80">Optionnel — via l&apos;icône calendrier en haut.</span>
+            </p>
+          </section>
         )}
+
+        {/* Nuit du Destin (Laylatul Qadr) - calendrier Khadim Rassoul */}
+        {laylatulQadrNight && (
+          <section className="mb-6 rounded-2xl border border-primary/40 bg-primary/5 p-4">
+            <p className="text-center font-amiri text-lg font-semibold text-primary">
+              Selon le tableau de Khadim Rassoul (Cheikh Ahmadou Bamba), la
+              Nuit du Destin (Laylatul Qadr) serait la{" "}
+              <span className="font-bold">nuit {laylatulQadrNight}</span>.
+            </p>
+            <p className="mt-2 text-center text-sm text-muted-foreground">
+              Elle tombe toujours une nuit du jeudi au vendredi, jour impair.
+            </p>
+          </section>
+        )}
+
+        {/* Nafila du jour - prioritaire (dès la veille du Ramadan) */}
+        {todayNight && (
+          <section className="mb-8">
+            <TodayNafila night={todayNight} />
+          </section>
+        )}
+
+        {/* Pas encore le Ramadan : compte à rebours */}
+        {isSet && !hasStarted && daysUntilFirstNight > 0 && (
+          <section className="mb-8 rounded-2xl border border-primary/40 bg-card p-6 text-center">
+            <p className="font-amiri text-xl font-bold text-primary">
+              {daysUntilFirstNight === 1
+                ? "Première nuit de Nafila dans 1 jour"
+                : `Première nuit de Nafila dans ${daysUntilFirstNight} jours`}
+            </p>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Tu verras la Nafila du jour à l&apos;approche du Ramadan.
+            </p>
+          </section>
+        )}
+
+        {/* Toutes les nuits */}
+        <div>
+          <h3 className="mb-4 font-amiri text-lg font-semibold text-foreground">
+            Toutes les 30 nuits
+          </h3>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {nafilaData.map((night) => (
+              <NightCard
+                key={night.night}
+                night={night}
+                isCompleted={isCompleted(night.night)}
+                isLaylatulQadr={laylatulQadrNight === night.night}
+              />
+            ))}
+          </div>
+        </div>
 
         {/* Footer */}
         <footer className="mt-12 border-t border-border pt-6 text-center text-sm text-muted-foreground">

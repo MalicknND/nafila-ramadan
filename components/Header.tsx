@@ -30,16 +30,14 @@ export default function Header() {
             <Image src="/logo.png" alt="Logo" width={60} height={60} />
           </Link>
           <div className="flex items-center gap-2">
-            {isSet && (
-              <button
-                onClick={() => setShowDateDialog(true)}
-                className="rounded-lg bg-secondary p-1.5 text-secondary-foreground transition-colors hover:bg-secondary/80"
-                aria-label="Changer la date"
-                title="Changer la date de début du Ramadan"
-              >
-                <Calendar className="h-4 w-4" />
-              </button>
-            )}
+            <button
+              onClick={() => setShowDateDialog(true)}
+              className="rounded-lg bg-secondary p-1.5 text-secondary-foreground transition-colors hover:bg-secondary/80"
+              aria-label={isSet ? "Changer la date" : "Définir ma date"}
+              title={isSet ? "Changer la date de début du Ramadan" : "Définir ma date de début du Ramadan"}
+            >
+              <Calendar className="h-4 w-4" />
+            </button>
             <button
               onClick={toggleDark}
               className="rounded-lg bg-secondary p-1.5 text-secondary-foreground transition-colors hover:bg-secondary/80"
