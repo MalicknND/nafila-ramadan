@@ -3,10 +3,40 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider, RamadanStartProvider } from "@/components/Providers";
 
+const SITE_URL = "https://nafila-ramadan.vercel.app";
+
 export const metadata: Metadata = {
-  title: "Nafila Ramadan",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Nafila Ramadan",
+    template: "%s | Nafila Ramadan",
+  },
   description:
     "Nafila du Ramadan - Les 30 Nafila extraits du livre de Serigne Souhaibou Mbacké",
+  keywords: ["Nafila", "Ramadan", "prière", "Serigne Souhaibou Mbacké"],
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    url: SITE_URL,
+    siteName: "Nafila Ramadan",
+    title: "Nafila Ramadan",
+    description:
+      "Nafila du Ramadan - Les 30 Nafila extraits du livre de Serigne Souhaibou Mbacké",
+    images: [
+      {
+        url: "/logo.png",
+        width: 512,
+        height: 512,
+        alt: "Nafila Ramadan",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary",
+    title: "Nafila Ramadan",
+    description:
+      "Nafila du Ramadan - Les 30 Nafila extraits du livre de Serigne Souhaibou Mbacké",
+  },
 };
 
 // Dans app/layout.tsx (ou app/viewport.ts)

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { nafilaData } from "@/data/ramadan";
 
+const SITE_URL = "https://nafila-ramadan.vercel.app";
+
 type Props = {
   params: Promise<{ id: string }>;
 };
@@ -12,7 +14,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!night) {
     return {
-      title: "Nuit introuvable | Nafila Ramadan",
+      title: "Nuit introuvable",
     };
   }
 
@@ -21,9 +23,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       ? `${night.benefitsFrench.slice(0, 147)}...`
       : night.benefitsFrench;
 
+  const title = `Nuit ${night.night} - ${night.titleFrench}`;
+  const description = `${night.rakaat} Rakaat — ${desc}`;
+
   return {
-    title: `Nuit ${night.night} - ${night.titleFrench} | Nafila Ramadan`,
-    description: `${night.rakaat} Rakaat — ${desc}`,
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: `${SITE_URL}/night/${night.night}`,
+    },
+    twitter: {
+      card: "summary",
+      title,
+      description,
+    },
   };
 }
 
