@@ -8,6 +8,7 @@ import {
   useCallback,
   type ReactNode,
 } from "react";
+import { toLocalDateString } from "@/lib/utils";
 import type { Language } from "@/types";
 
 interface LanguageContextType {
@@ -115,10 +116,10 @@ export function RamadanStartProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const setStartDate = useCallback((date: Date) => {
-    const iso = date.toISOString().slice(0, 10);
-    setStartDateState(iso);
+    const dateStr = toLocalDateString(date);
+    setStartDateState(dateStr);
     if (typeof window !== "undefined") {
-      localStorage.setItem(RAMADAN_STORAGE_KEY, iso);
+      localStorage.setItem(RAMADAN_STORAGE_KEY, dateStr);
     }
   }, []);
 
@@ -137,7 +138,10 @@ export function RamadanStartProvider({ children }: { children: ReactNode }) {
 
   const parsedDate = startDate ? new Date(startDate + "T12:00:00") : null;
   const daysSince = parsedDate ? getDaysSince(parsedDate) : 0;
-  // Nuit 1 = veille du 1er jour de jeûne (ex: Ramadan 17 fév → Nuit 1 = soir du 16)
+
+  // Logique Nafila : Nuit 1 = veille du 1er jour de jeûne
+  // Ex: Ramadan 17 fév → Nuit 1 = soir du 16 | Jour 17 = Nuit 2 | Jour 18 = Nuit 3
+  // hasStarted dès la veille (daysSince >= -1)
   const hasStarted = daysSince >= -1;
   const currentNight = hasStarted
     ? Math.max(1, Math.min(30, daysSince + 2))

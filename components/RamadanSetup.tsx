@@ -3,7 +3,9 @@
 import { useState, useEffect } from "react";
 import { useLanguage } from "@/components/Providers";
 import { useRamadanStart } from "@/components/Providers";
-import { Calendar } from "lucide-react";
+import { toLocalDateString } from "@/lib/utils";
+import { Calendar as CalendarIcon } from "lucide-react";
+import { DatePicker } from "@/components/DatePicker";
 
 interface RamadanSetupProps {
   initialDate?: string | null;
@@ -36,6 +38,11 @@ export default function RamadanSetup({
     onSuccess?.();
   };
 
+  const handleDateChange = (date: Date) => {
+    setDateValue(toLocalDateString(date));
+    setError(false);
+  };
+
   return (
     <div
       className={`rounded-2xl border border-border bg-card shadow-lg ${
@@ -48,7 +55,7 @@ export default function RamadanSetup({
         }`}
       >
         <div className="flex h-14 w-14 items-center justify-center rounded-full bg-primary/20">
-          <Calendar className="h-7 w-7 text-primary" />
+          <CalendarIcon className="h-7 w-7 text-primary" />
         </div>
         <h2
           className={`font-amiri font-bold text-foreground ${
@@ -75,19 +82,11 @@ export default function RamadanSetup({
           >
             {t("Daat", "Date")}
           </label>
-          <input
-            id="ramadan-start"
-            type="date"
+          <DatePicker
             value={dateValue}
-            onChange={(e) => {
-              setDateValue(e.target.value);
-              setError(false);
-            }}
-            className={`w-full rounded-lg border bg-background px-3 py-2.5 text-sm text-foreground transition-colors focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 ${
-              error ? "border-destructive" : "border-border"
-            }`}
-            style={{ fontSize: "16px" }}
-            required
+            onChange={handleDateChange}
+            placeholder="jj/mm/aaaa"
+            error={error}
           />
           {error && (
             <p className="mt-2 text-sm text-destructive">
