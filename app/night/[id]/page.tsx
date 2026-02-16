@@ -7,7 +7,6 @@ import { useLanguage, useCompletedNights } from "@/components/Providers";
 import { nafilaData } from "@/data/ramadan";
 import Header from "@/components/Header";
 import SurahList from "@/components/SurahList";
-import ShareButton from "@/components/ShareButton";
 import ExportImageButton from "@/components/ExportImageButton";
 
 export default function NightDetailPage() {
@@ -89,26 +88,27 @@ export default function NightDetailPage() {
           </p>
         </div>
 
-        {/* Actions */}
-        <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+        {/* Actions - mobile: empilés, desktop: côte à côte, même largeur */}
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-stretch">
           <button
             type="button"
             onClick={() => toggle(night.night)}
-            className={`flex flex-1 items-center justify-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold transition-all duration-300 ${
+            className={`flex min-w-0 flex-1 items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold transition-all duration-300 sm:px-6 ${
               completed
                 ? "bg-primary text-primary-foreground"
                 : "border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground"
             }`}
           >
-            <Check className="h-4 w-4" />
-            {completed
-              ? t("Defna ko ✓", "Terminé ✓")
-              : t("Tëral ne defna ko", "Marquer comme terminé")}
+            <Check className="h-4 w-4 shrink-0" />
+            <span className="truncate">
+              {completed
+                ? t("Defna ko ✓", "Terminé ✓")
+                : t("Tëral ne defna ko", "Marquer comme terminé")}
+            </span>
           </button>
 
-          <div className="flex gap-3 sm:flex-1">
+          <div className="flex min-w-0 flex-1">
             <ExportImageButton night={night} lang={lang} />
-            <ShareButton night={night} lang={lang} />
           </div>
         </div>
 

@@ -172,12 +172,12 @@ export default function ExportImageButton({
     typeof navigator !== "undefined" && !!navigator.clipboard?.write;
 
   return (
-    <div className="relative">
+    <div className="relative w-full">
       <button
         type="button"
         onClick={() => setShowMenu(!showMenu)}
         disabled={isLoading}
-        className="flex min-w-0 flex-1 items-center justify-center gap-2 rounded-xl border-2 border-primary px-4 py-3 text-sm font-semibold text-primary transition-all hover:bg-primary hover:text-primary-foreground disabled:opacity-60 sm:flex-initial"
+        className="flex min-w-0 w-full items-center justify-center gap-2 rounded-xl border-2 border-primary px-4 py-3 text-sm font-semibold text-primary transition-all hover:bg-primary hover:text-primary-foreground disabled:opacity-60 sm:px-6"
       >
         <Download className="h-4 w-4 shrink-0" />
         <span className="truncate">
@@ -192,7 +192,7 @@ export default function ExportImageButton({
             onClick={() => setShowMenu(false)}
             aria-hidden
           />
-          <div className="absolute right-0 top-full z-50 mt-2 min-w-[200px] rounded-xl border border-border bg-card py-2 shadow-lg">
+          <div className="absolute left-0 right-0 top-full z-50 mt-2 min-w-[200px] rounded-xl border border-border bg-card py-2 shadow-lg sm:left-auto sm:right-0">
             <button
               type="button"
               onClick={handleDownload}
