@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { LanguageProvider, RamadanStartProvider } from "@/components/Providers";
 import SuggestionsModal from "@/components/SuggestionsModal";
@@ -70,6 +71,7 @@ export default function RootLayout({
         <RamadanStartProvider>
           {children}
           <SuggestionsModal />
+          <Analytics />
         </RamadanStartProvider>
       </LanguageProvider>
       </body>
