@@ -24,7 +24,7 @@ export const metadata: Metadata = {
       "Nafila du Ramadan - Les 30 Nafila extraits du livre de Serigne Souhaibou Mbacké",
     images: [
       {
-        url: "/logo.png",
+        url: "/nafila.png",
         width: 512,
         height: 512,
         alt: "Nafila Ramadan",
@@ -66,8 +66,8 @@ export default function RootLayout({
       </head>
       <body className={`${inter.variable} ${inter.className}`}>
         <LanguageProvider>
-        <RamadanStartProvider>{children}</RamadanStartProvider>
-      </LanguageProvider>
+          <RamadanStartProvider>{children}</RamadanStartProvider>
+        </LanguageProvider>
       </body>
     </html>
   );
