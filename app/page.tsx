@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useLanguage } from "@/components/Providers";
 import { useCompletedNights } from "@/components/Providers";
 import { nafilaData } from "@/data/ramadan";
@@ -17,9 +18,12 @@ export default function HomePage() {
 
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center opacity-20 dark:opacity-10"
-          style={{ backgroundImage: "url(/hero.jpeg)" }}
+        <Image
+          src="/hero.jpeg"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover opacity-20 dark:opacity-10"
         />
         <div className="container relative mx-auto max-w-[1400px] px-4 py-10 text-center">
           <p className="mb-2 text-sm font-medium uppercase tracking-widest text-muted-foreground">

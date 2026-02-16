@@ -17,6 +17,7 @@ export const viewport = {
 const inter = Inter({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
+  variable: "--font-inter",
 });
 
 export default function RootLayout({
@@ -33,7 +34,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={inter.className}>
+      <body className={`${inter.variable} ${inter.className}`}>
         <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>
