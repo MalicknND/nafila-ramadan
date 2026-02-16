@@ -13,7 +13,7 @@ interface NightCardProps {
 export default function NightCard({ night, isCompleted, isLaylatulQadr }: NightCardProps) {
   return (
     <Link
-      href={`/night/${night.night}`}
+      href={`/nuit/${night.night}`}
       className={`group relative block overflow-hidden rounded-xl border border-border bg-card p-5 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-md ${isLaylatulQadr ? "border-primary/50 ring-1 ring-primary/20" : ""}`}
       style={{ animationDelay: `${night.night * 30}ms` }}
     >

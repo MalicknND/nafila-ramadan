@@ -1,4 +1,4 @@
-export default function NightLoading() {
+export default function NuitLoading() {
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto max-w-2xl px-4 pb-12 pt-6">

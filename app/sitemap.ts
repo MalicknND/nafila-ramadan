@@ -5,7 +5,7 @@ const SITE_URL = "https://www.nafila-ramadan.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const nights = nafilaData.map((night) => ({
-    url: `${SITE_URL}/night/${night.night}`,
+    url: `${SITE_URL}/nuit/${night.night}`,
     lastModified: new Date(),
     changeFrequency: "yearly" as const,
     priority: 0.8,

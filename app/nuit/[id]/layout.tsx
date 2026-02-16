@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title,
       description,
-      url: `${SITE_URL}/night/${night.night}`,
+      url: `${SITE_URL}/nuit/${night.night}`,
     },
     twitter: {
       card: "summary",
@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default function NightLayout({
+export default function NuitLayout({
   children,
 }: {
   children: React.ReactNode;

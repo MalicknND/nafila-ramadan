@@ -139,7 +139,7 @@ export default function NightDetailPage() {
         <div className="mt-8 flex justify-between">
           {night.night > 1 && (
             <Link
-              href={`/night/${night.night - 1}`}
+              href={`/nuit/${night.night - 1}`}
               className="text-sm text-muted-foreground hover:text-foreground"
             >
               ← Nuit {night.night - 1}
@@ -148,7 +148,7 @@ export default function NightDetailPage() {
           <div className="flex-1" />
           {night.night < 30 && (
             <Link
-              href={`/night/${night.night + 1}`}
+              href={`/nuit/${night.night + 1}`}
               className="text-sm text-muted-foreground hover:text-foreground"
             >
               Nuit {night.night + 1} →

@@ -15,7 +15,7 @@ export default function TodayNafila({ night }: TodayNafilaProps) {
 
   return (
     <Link
-      href={`/night/${night.night}`}
+      href={`/nuit/${night.night}`}
       className="group block rounded-2xl border-2 border-primary/40 bg-card p-6 shadow-lg transition-all hover:border-primary hover:shadow-xl dark:bg-card/80"
     >
       <div className="flex items-start justify-between gap-4">

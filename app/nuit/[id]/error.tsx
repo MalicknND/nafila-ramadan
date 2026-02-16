@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import Link from "next/link";
 
-export default function NightError({
+export default function NuitError({
   error,
   reset,
 }: {
