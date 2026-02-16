@@ -22,39 +22,32 @@ const SCALE = 2;
 
 interface ExportImageButtonProps {
   night: NafilaNight;
-  lang: Language;
+  lang: Language; // langue des bienfaits uniquement
 }
 
 export default function ExportImageButton({
   night,
-  lang,
+  lang: benefitsLang,
 }: ExportImageButtonProps) {
   const exportRef = useRef<HTMLDivElement>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const getTitle = () => (lang === "wo" ? night.titleWolof : night.titleFrench);
+  const getTitle = () => night.titleFrench;
   const getBenefits = () =>
-    lang === "wo" ? night.benefitsWolof : night.benefitsFrench;
+    benefitsLang === "wo" ? night.benefitsWolof : night.benefitsFrench;
   const getSurahName = (surah: { name: string; nameWolof: string }) =>
-    lang === "wo" ? surah.nameWolof : surah.name;
+    surah.name;
 
   const getExportText = () => {
-    const title = lang === "wo" ? night.titleWolof : night.titleFrench;
-    const instructionsLabel = lang === "wo" ? "Ndimbal" : "Instructions";
     const surahsText = night.surahs
-      .map(
-        (s) =>
-          `${lang === "wo" ? s.nameWolof : s.name}\n×${s.count}`,
-      )
+      .map((s) => `${s.name}\n×${s.count}`)
       .join("\n\n");
-    const benefits = lang === "wo" ? night.benefitsWolof : night.benefitsFrench;
-    let text = `${title}\n${instructionsLabel}\n${night.rakaat} Rakaat\n\n${surahsText}`;
+    const benefits = getBenefits();
+    let text = `${night.titleFrench}\nInstructions\n${night.rakaat} Rakaat\n\n${surahsText}`;
     if (night.extraInstructions) {
-      text += `\n\n${
-        lang === "wo" ? night.extraInstructions.wo : night.extraInstructions.fr
-      }`;
+      text += `\n\n${night.extraInstructions.fr}`;
     }
     text += `\n\nNjariñ / Bienfaits\n${benefits}`;
     return text;
@@ -275,7 +268,7 @@ export default function ExportImageButton({
                 color: COLORS.muted,
               }}
             >
-              {lang === "wo" ? "Guddi" : "Nuit"}
+              Nuit
             </span>
           </div>
           <h2
@@ -309,7 +302,7 @@ export default function ExportImageButton({
               marginBottom: 24, // ✅ Augmenté de 20 → 24
             }}
           >
-            {lang === "wo" ? "Ndimbal" : "Instructions"}
+            Instructions
           </h3>
           <p
             style={{
@@ -385,9 +378,7 @@ export default function ExportImageButton({
                   color: COLORS.foreground,
                 }}
               >
-                {lang === "wo"
-                  ? night.extraInstructions.wo
-                  : night.extraInstructions.fr}
+                {night.extraInstructions.fr}
               </p>
             </div>
           )}

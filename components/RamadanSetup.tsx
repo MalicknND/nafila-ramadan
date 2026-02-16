@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useLanguage } from "@/components/Providers";
 import { useRamadanStart } from "@/components/Providers";
 import { toLocalDateString } from "@/lib/utils";
 import { Calendar as CalendarIcon } from "lucide-react";
@@ -18,7 +17,6 @@ export default function RamadanSetup({
   compact = false,
   onSuccess,
 }: RamadanSetupProps) {
-  const { t } = useLanguage();
   const { setStartDate } = useRamadanStart();
   const [dateValue, setDateValue] = useState(initialDate || "");
   const [error, setError] = useState(false);
@@ -62,17 +60,11 @@ export default function RamadanSetup({
             compact ? "text-xl" : "text-2xl"
           }`}
         >
-          {t(
-            "Kañ la u njëkkëd Wéérou Koor ?",
-            "Quand as-tu commencé le Ramadan ?",
-          )}
+          Quand as-tu commencé le Ramadan ?
         </h2>
       </div>
       <p className="mb-6 text-center text-muted-foreground">
-        {t(
-          "Téré ci bépp guddi sa Nafila.",
-          "Tu verras la Nafila du jour chaque fois que tu viendras.",
-        )}
+        Tu verras la Nafila du jour chaque fois que tu viendras.
       </p>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
@@ -80,7 +72,7 @@ export default function RamadanSetup({
             htmlFor="ramadan-start"
             className="mb-2 block text-sm font-medium text-foreground"
           >
-            {t("Daat", "Date")}
+            Date
           </label>
           <DatePicker
             value={dateValue}
@@ -90,7 +82,7 @@ export default function RamadanSetup({
           />
           {error && (
             <p className="mt-2 text-sm text-destructive">
-              {t("Téere téeree daat.", "Veuillez choisir une date.")}
+              Veuillez choisir une date.
             </p>
           )}
         </div>
@@ -98,7 +90,7 @@ export default function RamadanSetup({
           type="submit"
           className="w-full rounded-xl bg-primary px-6 py-3 text-base font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
         >
-          {t("Taxawal", "Valider")}
+          Valider
         </button>
       </form>
     </div>

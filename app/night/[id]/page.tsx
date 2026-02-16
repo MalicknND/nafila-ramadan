@@ -11,7 +11,7 @@ import ExportImageButton from "@/components/ExportImageButton";
 
 export default function NightDetailPage() {
   const params = useParams();
-  const { lang, t } = useLanguage();
+  const { lang, setLang } = useLanguage();
   const { isCompleted, toggle } = useCompletedNights();
 
   const nightNum = Number(params.id);
@@ -21,7 +21,7 @@ export default function NightDetailPage() {
     return (
       <div className="flex min-h-screen items-center justify-center bg-background">
         <p className="text-muted-foreground">
-          {t("Guddi gi amul.", "Cette nuit n'existe pas.")}
+          Cette nuit n&apos;existe pas.
         </p>
       </div>
     );
@@ -40,7 +40,7 @@ export default function NightDetailPage() {
           className="mb-6 inline-flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-foreground"
         >
           <ArrowLeft className="h-4 w-4" />
-          {t("Déllu ci biir", "Retour")}
+          Retour
         </Link>
 
         {/* Title */}
@@ -50,41 +50,50 @@ export default function NightDetailPage() {
               {night.night}
             </span>
             <span className="text-lg text-muted-foreground">
-              {t("Guddi", "Nuit")}
+              Nuit
             </span>
           </div>
           <h2 className="font-amiri text-2xl text-foreground">
-            {t(night.titleWolof, night.titleFrench)}
+            {night.titleFrench}
           </h2>
         </div>
 
         {/* Rakaat */}
         <div className="mb-6 rounded-xl border border-border bg-card p-5">
           <h3 className="mb-3 font-amiri text-lg font-bold text-foreground">
-            {t("Ndimbal", "Instructions")}
+            Instructions
           </h3>
           <p className="mb-4 text-lg font-semibold text-primary">
             {night.rakaat} Rakaat
           </p>
 
-          <SurahList surahs={night.surahs} lang={lang} />
+          <SurahList surahs={night.surahs} lang="fr" />
 
           {night.extraInstructions && (
             <div className="mt-4 rounded-lg border border-accent/30 bg-accent/10 p-3">
               <p className="text-sm leading-relaxed text-foreground">
-                {t(night.extraInstructions.wo, night.extraInstructions.fr)}
+                {night.extraInstructions.fr}
               </p>
             </div>
           )}
         </div>
 
-        {/* Benefits */}
+        {/* Benefits - toggle langue uniquement ici */}
         <div className="mb-6 rounded-xl border border-border bg-card p-5">
-          <h3 className="mb-3 font-amiri text-lg font-bold text-foreground">
-            {t("Njariñ / Bienfaits", "Njariñ / Bienfaits")}
-          </h3>
+          <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+            <h3 className="font-amiri text-lg font-bold text-foreground">
+              Njariñ / Bienfaits
+            </h3>
+            <button
+              type="button"
+              onClick={() => setLang(lang === "wo" ? "fr" : "wo")}
+              className="rounded-lg bg-secondary px-2 py-1 text-xs font-medium text-secondary-foreground transition-colors hover:bg-secondary/80"
+            >
+              {lang === "wo" ? "FR" : "WO"}
+            </button>
+          </div>
           <p className="whitespace-pre-line leading-relaxed text-foreground">
-            {t(night.benefitsWolof, night.benefitsFrench)}
+            {lang === "wo" ? night.benefitsWolof : night.benefitsFrench}
           </p>
         </div>
 
@@ -102,8 +111,8 @@ export default function NightDetailPage() {
             <Check className="h-4 w-4 shrink-0" />
             <span className="truncate">
               {completed
-                ? t("Defna ko ✓", "Terminé ✓")
-                : t("Tëral ne defna ko", "Marquer comme terminé")}
+                ? "Terminé ✓"
+                : "Marquer comme terminé"}
             </span>
           </button>
 
@@ -119,7 +128,7 @@ export default function NightDetailPage() {
               href={`/night/${night.night - 1}`}
               className="text-sm text-muted-foreground hover:text-foreground"
             >
-              ← {t("Guddi", "Nuit")} {night.night - 1}
+              ← Nuit {night.night - 1}
             </Link>
           )}
           <div className="flex-1" />
@@ -128,7 +137,7 @@ export default function NightDetailPage() {
               href={`/night/${night.night + 1}`}
               className="text-sm text-muted-foreground hover:text-foreground"
             >
-              {t("Guddi", "Nuit")} {night.night + 1} →
+              Nuit {night.night + 1} →
             </Link>
           )}
         </div>

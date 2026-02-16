@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { Check } from "lucide-react";
-import { useLanguage } from "@/components/Providers";
 import type { NafilaNight } from "@/types";
 
 interface NightCardProps {
@@ -11,8 +10,6 @@ interface NightCardProps {
 }
 
 export default function NightCard({ night, isCompleted }: NightCardProps) {
-  const { t } = useLanguage();
-
   return (
     <Link
       href={`/night/${night.night}`}
@@ -30,7 +27,7 @@ export default function NightCard({ night, isCompleted }: NightCardProps) {
           {night.night}
         </span>
         <span className="text-sm text-muted-foreground">
-          {t("Guddi", "Nuit")}
+          Nuit
         </span>
       </div>
 
@@ -39,12 +36,12 @@ export default function NightCard({ night, isCompleted }: NightCardProps) {
           {night.rakaat} Rakaat
         </span>
         <span className="inline-flex items-center rounded-md bg-accent/20 px-2 py-0.5 text-xs font-medium text-accent-foreground">
-          {night.surahs.length} {t("Surat", "Sourates")}
+          {night.surahs.length} Sourates
         </span>
       </div>
 
       <p className="line-clamp-2 text-sm leading-relaxed text-muted-foreground">
-        {t(night.titleWolof, night.titleFrench)}
+        {night.titleFrench}
       </p>
     </Link>
   );

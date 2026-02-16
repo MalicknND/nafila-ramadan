@@ -22,7 +22,7 @@ const LanguageContext = createContext<LanguageContextType | undefined>(
 );
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [lang, setLangState] = useState<Language>("wo");
+  const [lang, setLangState] = useState<Language>("fr");
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -30,6 +30,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       (typeof window !== "undefined" &&
         localStorage.getItem("nafila-lang")) as Language | null;
     if (stored === "wo" || stored === "fr") setLangState(stored);
+    else setLangState("fr");
     setMounted(true);
   }, []);
 

@@ -1,9 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Moon, Sun, Globe, Calendar } from "lucide-react";
+import { Moon, Sun, Calendar } from "lucide-react";
 import { useDarkMode } from "@/components/Providers";
-import { useLanguage } from "@/components/Providers";
 import { useRamadanStart } from "@/components/Providers";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,7 +11,6 @@ import RamadanSetup from "@/components/RamadanSetup";
 
 export default function Header() {
   const { isDark, toggle: toggleDark } = useDarkMode();
-  const { lang, setLang, t } = useLanguage();
   const { isSet, startDate } = useRamadanStart();
   const pathname = usePathname();
   const [showDateDialog, setShowDateDialog] = useState(false);
@@ -36,20 +34,12 @@ export default function Header() {
               <button
                 onClick={() => setShowDateDialog(true)}
                 className="rounded-lg bg-secondary p-1.5 text-secondary-foreground transition-colors hover:bg-secondary/80"
-                aria-label={t("Soppi daat", "Changer la date")}
-                title={t("Soppi daat Wéérou Koor", "Changer la date de début du Ramadan")}
+                aria-label="Changer la date"
+                title="Changer la date de début du Ramadan"
               >
                 <Calendar className="h-4 w-4" />
               </button>
             )}
-            <button
-              onClick={() => setLang(lang === "wo" ? "fr" : "wo")}
-              className="flex items-center gap-1 rounded-lg bg-secondary px-3 py-1.5 text-sm font-medium text-secondary-foreground transition-colors hover:bg-secondary/80"
-              aria-label="Toggle language"
-            >
-              <Globe className="h-4 w-4" />
-              {lang === "wo" ? "FR" : "WO"}
-            </button>
             <button
               onClick={toggleDark}
               className="rounded-lg bg-secondary p-1.5 text-secondary-foreground transition-colors hover:bg-secondary/80"
@@ -72,7 +62,7 @@ export default function Header() {
             <button
               onClick={() => setShowDateDialog(false)}
               className="absolute -top-2 -right-2 flex h-8 w-8 items-center justify-center rounded-full bg-muted text-muted-foreground hover:bg-muted/80"
-              aria-label={t("Tegg", "Fermer")}
+              aria-label="Fermer"
             >
               ×
             </button>
