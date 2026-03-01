@@ -174,7 +174,7 @@ export const nafilaData: NafilaNight[] = [
       {
         name: "Al-Qadr (Inna Anzalnahou)",
         nameWolof: "Inna Anzalnahou fil Laylatoul Qadr",
-        count: 2,
+        count: 7,
       },
       { name: "Al-Kafiroun", nameWolof: "Kafirouna", count: 7 },
       { name: "Al-Ikhlass", nameWolof: "Ikhlass", count: 7 },
