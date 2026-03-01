@@ -3,6 +3,10 @@ import { nafilaData } from "@/data/ramadan";
 
 const SITE_URL = "https://www.nafila-ramadan.com";
 
+export function generateStaticParams() {
+  return nafilaData.map((night) => ({ id: String(night.night) }));
+}
+
 type Props = {
   params: Promise<{ id: string }>;
 };
