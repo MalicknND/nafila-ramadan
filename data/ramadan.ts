@@ -319,6 +319,7 @@ export const nafilaData: NafilaNight[] = [
     titleFrench: "20ème Nuit du mois de Ramadan",
     surahs: [
       { name: "Al-Fatiha", nameWolof: "Fatiha", count: 1 },
+      { name: "Inna anzalnahou", nameWolof: "Inna Anzalnahou", count: 1 },
       { name: "Al-Ikhlass", nameWolof: "Ikhlass", count: 3 },
     ],
     benefitsWolof:
