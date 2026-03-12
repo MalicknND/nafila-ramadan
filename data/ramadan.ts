@@ -371,7 +371,7 @@ export const nafilaData: NafilaNight[] = [
     surahs: [
       { name: "Al-Fatiha", nameWolof: "Fatiha", count: 1 },
       {
-        name: "An-Nasr (Isédiaha)",
+        name: "An-Nasr (iza jaa nasrou Allah)",
         nameWolof: "Isédiaha Nasrou Lahi",
         count: 5,
       },
